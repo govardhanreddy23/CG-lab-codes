@@ -1,22 +1,28 @@
 package com.capg.demos.controller;
 
-import com.capg.demos.exception.TraineeNotFound;
+import java.sql.SQLException;
+
 import com.capg.demos.model.Trainee;
 import com.capg.demos.service.TraineeService;
+import com.capg.demos.service.TraineeServiceImpl;
 
 public class TraineeController {
 
 	TraineeService service;
 	
-	public void addTrainee(Trainee trainee) {
-		service.addTrainee(trainee);
+	public TraineeController() throws SQLException {
+	service=new TraineeServiceImpl();
 	}
 	
-	public void deleteTrainee(int id) throws TraineeNotFound {
+	public Trainee addTrainee(Trainee trainee) throws SQLException {
+		return service.addTrainee(trainee);
+	}
+	
+	public void deleteTrainee(int id) throws SQLException {
 		service.deleteTrainee(id);
 	}
 	
-	public Trainee getTrainee(int id) throws TraineeNotFound {
+	public Trainee findTrainee(int id) throws SQLException {
 		return service.getTrainee(id);
 	}
 	
